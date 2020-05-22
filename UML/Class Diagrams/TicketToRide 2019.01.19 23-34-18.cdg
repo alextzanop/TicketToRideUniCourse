@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="TicketToRide">
+  <ClassDiagramComponents>
+    <Class name="Controller" package="tickettoride.Controller" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="P1" type="Player" visibility="private"/>
+        <Field name="P2" type="Player" visibility="private"/>
+        <Field name="gb" type="GameBoard" visibility="private"/>
+        <Field name="playerPlaying" type="int" visibility="private"/>
+        <Field name="activePlayer" type="String" visibility="package"/>
+        <Field name="inactivePlayer" type="String" visibility="package"/>
+        <Field name="choiceMade" type="boolean" visibility="private"/>
+        <Field name="gameOver" type="boolean" visibility="package"/>
+        <Field name="cardsDrawn" type="int" visibility="package"/>
+        <Field name="topCities" type="ArrayList&lt;BigCityCard&gt;" visibility="package"/>
+        <Field name="botCities" type="ArrayList&lt;BigCityCard&gt;" visibility="package"/>
+        <Field name="trainDeck" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="ticketDeck" type="ArrayList&lt;DestinationCard&gt;" visibility="package"/>
+        <Field name="bigCities" type="ArrayList&lt;BigCityCard&gt;" visibility="package"/>
+        <Field name="view" type="View" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public"/>
+        <Method name="initDecks" returnType="void" visibility="public"/>
+        <Method name="initBigCities" returnType="void" visibility="public"/>
+        <Method name="dealCards" returnType="void" visibility="public"/>
+        <Method name="updateTrack" returnType="void" visibility="public"/>
+        <Method name="startGame" returnType="void" visibility="public"/>
+        <Method name="playerTurn" returnType="void" visibility="public">
+          <Argument type="Player" name="P"/>
+        </Method>
+        <Method name="moveToTrack" returnType="void" visibility="public"/>
+        <Method name="drawTrains" returnType="void" visibility="public"/>
+        <Method name="transferToRail" returnType="void" visibility="public"/>
+        <Method name="buyDest" returnType="void" visibility="public"/>
+        <Method name="canMoveToRail" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Card&gt;" name="fromHand"/>
+        </Method>
+        <Method name="gameFinished" returnType="boolean" visibility="public"/>
+        <Method name="announceWinner" returnType="void" visibility="public"/>
+        <Method name="trainRob" returnType="void" visibility="public"/>
+        <Method name="canBuy" returnType="boolean" visibility="public">
+          <Argument type="DestinationCard" name="dest"/>
+        </Method>
+        <Method name="updateScore" returnType="void" visibility="public"/>
+        <Method name="giveBigCityCard" returnType="void" visibility="public"/>
+        <Method name="getWinner" returnType="Player" visibility="public"/>
+        <Method name="Tiebreak" returnType="Player" visibility="public"/>
+        <Method name="getGameBoard" returnType="GameBoard" visibility="public"/>
+        <Method name="checkBigCities" returnType="void" visibility="public">
+          <Argument type="Container" name="playerCont"/>
+        </Method>
+        <Method name="readDestCards" returnType="void" visibility="public">
+          <Argument type="String" name="filePath"/>
+        </Method>
+        <Method name="moveToCenter" returnType="void" visibility="public">
+          <Argument type="int" name="xPos"/>
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="moveToHand" returnType="void" visibility="public">
+          <Argument type="JPanel" name="track"/>
+          <Argument type="String" name="cardPath"/>
+          <Argument type="int" name="rem"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BigCityCard" package="tickettoride.Model.Cards" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="cityName" type="String" visibility="private"/>
+        <Field name="points" type="int" visibility="private"/>
+        <Field name="timesVisited" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="path"/>
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="points"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="pointValue" returnType="int" visibility="public"/>
+        <Method name="Visited" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Card" package="tickettoride.Model.Cards" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="imagePath" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="path"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setImage" returnType="void" visibility="public">
+          <Argument type="String" name="imgPath"/>
+        </Method>
+        <Method name="getImage" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DestinationCard" package="tickettoride.Model.Cards" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="colors" type="ArrayList&lt;String&gt;" visibility="private"/>
+        <Field name="points" type="int" visibility="private"/>
+        <Field name="from" type="String" visibility="private"/>
+        <Field name="to" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="path"/>
+          <Argument type="ArrayList&lt;String&gt;" name="colors"/>
+          <Argument type="int" name="points"/>
+          <Argument type="String" name="from"/>
+          <Argument type="String" name="to"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setColors" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;String&gt;" name="colors"/>
+        </Method>
+        <Method name="getColors" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="addColor" returnType="void" visibility="public">
+          <Argument type="String" name="colorStr"/>
+        </Method>
+        <Method name="pointValue" returnType="int" visibility="public"/>
+        <Method name="setStart" returnType="void" visibility="public">
+          <Argument type="String" name="start"/>
+        </Method>
+        <Method name="getStart" returnType="String" visibility="public"/>
+        <Method name="setDest" returnType="void" visibility="public">
+          <Argument type="String" name="dest"/>
+        </Method>
+        <Method name="getDest" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TrainCard" package="tickettoride.Model.Cards" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="color" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="path"/>
+          <Argument type="String" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="isLocomotive" returnType="boolean" visibility="public"/>
+        <Method name="setColor" returnType="void" visibility="public">
+          <Argument type="String" name="color"/>
+        </Method>
+        <Method name="getColor" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Deck" package="tickettoride.Model" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="cards" type="ArrayList&lt;Card&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;Card&gt;" name="cards"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getTopCard" returnType="Card" visibility="public"/>
+        <Method name="removeTopCard" returnType="void" visibility="public"/>
+        <Method name="addCardToDeck" returnType="void" visibility="public">
+          <Argument type="Card" name="c"/>
+          <Argument type="int" name="position"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="cardsLeft" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GameBoard" package="tickettoride.Model" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="trainCards" type="Deck" visibility="private"/>
+        <Field name="destCards" type="Deck" visibility="private"/>
+        <Field name="centerCards" type="ArrayList&lt;Card&gt;" visibility="private"/>
+        <Field name="bigCityCards" type="ArrayList&lt;Card&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Deck" name="trains"/>
+          <Argument type="Deck" name="dest"/>
+          <Argument type="ArrayList&lt;Card&gt;" name="center"/>
+          <Argument type="ArrayList&lt;Card&gt;" name="bigCity"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTrainCards" returnType="Deck" visibility="public"/>
+        <Method name="getDestCards" returnType="Deck" visibility="public"/>
+        <Method name="getCenterCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getbigCityCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Player" package="tickettoride.Model" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="ID" type="int" visibility="private"/>
+        <Field name="player_points" type="int" visibility="private"/>
+        <Field name="Hand" type="ArrayList&lt;Card&gt;" visibility="private"/>
+        <Field name="rail" type="RailYard" visibility="private"/>
+        <Field name="track" type="Track" visibility="private"/>
+        <Field name="destCards" type="ArrayList&lt;Card&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="ID"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setID" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getID" returnType="int" visibility="public"/>
+        <Method name="addToHand" returnType="void" visibility="public">
+          <Argument type="Card" name="c"/>
+        </Method>
+        <Method name="addTicket" returnType="void" visibility="public">
+          <Argument type="Card" name="c"/>
+        </Method>
+        <Method name="getHand" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getRail" returnType="RailYard" visibility="public"/>
+        <Method name="getTrack" returnType="Track" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="RailYard" package="tickettoride.Model" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="redPile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="blackPile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="bluePile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="greenPile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="purplePile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="whitePile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="yellowPile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="orangePile" type="ArrayList&lt;Card&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;ArrayList&lt;Card&gt;&gt;" name="piles"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getRedCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getBlackCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getBlueCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getGreenCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getPurpleCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getWhiteCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getYellowCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+        <Method name="getOrangeCards" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Track" package="tickettoride.Model" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="locomotivePile" type="ArrayList&lt;Card&gt;" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;ArrayList&lt;Card&gt;&gt;" name="colPiles"/>
+          <Argument type="ArrayList&lt;Card&gt;" name="locPile"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getLocomotivePile" returnType="ArrayList&lt;Card&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="JPanelExtesion" package="tickettoride.View" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="image" type="Image" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Image" name="img"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="paintComponent" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="View" package="tickettoride.View" visibility="public" isFinal="true" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="screenSize" type="Dimension" visibility="package"/>
+        <Field name="container" type="Container" visibility="package"/>
+        <Field name="c" type="GridBagConstraints" visibility="package"/>
+        <Field name="cldr" type="ClassLoader" visibility="package"/>
+        <Field name="bgImageURL" type="String" visibility="package"/>
+        <Field name="bgURL" type="URL" visibility="package"/>
+        <Field name="bgImage" type="Image" visibility="package"/>
+        <Field name="activePlayer" type="String" visibility="public"/>
+        <Field name="donePlaying" type="boolean" visibility="public"/>
+        <Field name="trackDone" type="boolean" visibility="public"/>
+        <Field name="topLastDestX" type="int" visibility="public"/>
+        <Field name="botLastDestX" type="int" visibility="public"/>
+        <Field name="topTicketsBought" type="int" visibility="public"/>
+        <Field name="botTicketsBought" type="int" visibility="public"/>
+        <Field name="cardsDrawn" type="int" visibility="package"/>
+        <Field name="topDestinations" type="ArrayList&lt;String&gt;" visibility="public"/>
+        <Field name="botDestinations" type="ArrayList&lt;String&gt;" visibility="public"/>
+        <Field name="colors" type="String[]" visibility="package"/>
+        <Field name="railPositions" type="int[]" visibility="package"/>
+        <Field name="railYoffset" type="int" visibility="package"/>
+        <Field name="railTopLastYPos" type="int[]" visibility="package"/>
+        <Field name="railBotLastYPos" type="int[]" visibility="package"/>
+        <Field name="midPanel" type="JPanelExtesion" visibility="public"/>
+        <Field name="topPlayer" type="JPanel" visibility="package"/>
+        <Field name="botPlayer" type="JPanel" visibility="package"/>
+        <Field name="internalPanelBorder" type="Border" visibility="package"/>
+        <Field name="emptyBorder" type="Border" visibility="package"/>
+        <Field name="deck" type="ArrayList&lt;Card&gt;" visibility="package"/>
+        <Field name="panelList" type="ArrayList&lt;JPanel&gt;" visibility="package"/>
+        <Field name="labelList" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="railLabelList" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topTrackLabelList" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botTrackLabelList" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topOff" type="int" visibility="public"/>
+        <Field name="botOff" type="int" visibility="public"/>
+        <Field name="topDestOff" type="int" visibility="package"/>
+        <Field name="botDestOff" type="int" visibility="package"/>
+        <Field name="topTrainHand" type="JPanel" visibility="public"/>
+        <Field name="topRail" type="JPanel" visibility="public"/>
+        <Field name="topTicketHand" type="JPanel" visibility="public"/>
+        <Field name="topTrack" type="JPanel" visibility="public"/>
+        <Field name="topScoreBoard" type="JPanel" visibility="package"/>
+        <Field name="lastTopHandPos" type="int" visibility="public"/>
+        <Field name="lastBotHandPos" type="int" visibility="public"/>
+        <Field name="botTickets" type="ArrayList&lt;DestinationCard&gt;" visibility="package"/>
+        <Field name="topTickets" type="ArrayList&lt;DestinationCard&gt;" visibility="package"/>
+        <Field name="allTickets" type="ArrayList&lt;DestinationCard&gt;" visibility="package"/>
+        <Field name="botTrainHand" type="JPanel" visibility="public"/>
+        <Field name="botRail" type="JPanel" visibility="public"/>
+        <Field name="botTicketHand" type="JPanel" visibility="public"/>
+        <Field name="botTrack" type="JPanel" visibility="public"/>
+        <Field name="botScoreBoard" type="JPanel" visibility="package"/>
+        <Field name="topTrainLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailLabel" type="JLabel" visibility="package"/>
+        <Field name="topTicketLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackLabel" type="JLabel" visibility="package"/>
+        <Field name="topScoreboardLabel" type="JLabel" visibility="package"/>
+        <Field name="topScoreLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrainLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailLabel" type="JLabel" visibility="package"/>
+        <Field name="botTicketLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackLabel" type="JLabel" visibility="package"/>
+        <Field name="botScoreboardLabel" type="JLabel" visibility="package"/>
+        <Field name="botScoreLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailRedLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailBlackLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailBlueLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailGreenLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailPurpleLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailWhiteLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailYellowLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailOrangeLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailRedLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailBlackLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailBlueLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailGreenLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailPurpleLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailWhiteLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailYellowLabel" type="JLabel" visibility="package"/>
+        <Field name="botRailOrangeLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackRedLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackBlackLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackBlueLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackGreenLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackPurpleLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackWhiteLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackYellowLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackOrangeLabel" type="JLabel" visibility="package"/>
+        <Field name="topTrackLocomoLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackRedLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackBlackLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackBlueLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackGreenLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackPurpleLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackWhiteLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackYellowLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackOrangeLabel" type="JLabel" visibility="package"/>
+        <Field name="botTrackLocomoLabel" type="JLabel" visibility="package"/>
+        <Field name="topRailRedIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailBlackIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailBlueIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailGreenIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailPurpleIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailWhiteIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailYellowIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailOrangeIcon" type="JLabel" visibility="package"/>
+        <Field name="topRailLocomoIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailRedIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailBlackIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailBlueIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailGreenIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailPurpleIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailWhiteIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailYellowIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailOrangeIcon" type="JLabel" visibility="package"/>
+        <Field name="botRailLocomoIcon" type="JLabel" visibility="package"/>
+        <Field name="railIconList" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topRedPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topBlackPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topBluePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topGreenPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topPurplePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topWhitePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topYellowPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topOrangePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="topRailPilesList" type="ArrayList&lt;ArrayList&lt;JLabel&gt;&gt;" visibility="package"/>
+        <Field name="botRedPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botBlackPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botBluePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botGreenPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botPurplePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botWhitePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botYellowPile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botOrangePile" type="ArrayList&lt;JLabel&gt;" visibility="package"/>
+        <Field name="botRailPilesList" type="ArrayList&lt;ArrayList&lt;JLabel&gt;&gt;" visibility="package"/>
+        <Field name="ticketDeckCardsLeft" type="int" visibility="package"/>
+        <Field name="destDeckCardsLeft" type="int" visibility="package"/>
+        <Field name="TicketDeck" type="JLabel" visibility="package"/>
+        <Field name="DestinationDeck" type="JLabel" visibility="package"/>
+        <Field name="BigCities" type="JLabel" visibility="package"/>
+        <Field name="topButtons" type="ArrayList&lt;JButton&gt;" visibility="public"/>
+        <Field name="botButtons" type="ArrayList&lt;JButton&gt;" visibility="public"/>
+        <Field name="topHandButton" type="JButton" visibility="public"/>
+        <Field name="topRailButton" type="JButton" visibility="package"/>
+        <Field name="topDestButton" type="JButton" visibility="package"/>
+        <Field name="topBigCitiesButton" type="JButton" visibility="package"/>
+        <Field name="trainButtonList" type="ArrayList&lt;JButton&gt;" visibility="package"/>
+        <Field name="bigCityButtonList" type="ArrayList&lt;JButton&gt;" visibility="package"/>
+        <Field name="trainDeckButton" type="JButton" visibility="public"/>
+        <Field name="destDeckButton" type="JButton" visibility="public"/>
+        <Field name="trainButton0" type="JButton" visibility="package"/>
+        <Field name="trainButton1" type="JButton" visibility="package"/>
+        <Field name="trainButton2" type="JButton" visibility="package"/>
+        <Field name="trainButton3" type="JButton" visibility="package"/>
+        <Field name="trainButton4" type="JButton" visibility="package"/>
+        <Field name="bigCityButton0" type="JButton" visibility="package"/>
+        <Field name="bigCityButton1" type="JButton" visibility="package"/>
+        <Field name="bigCityButton2" type="JButton" visibility="package"/>
+        <Field name="bigCityButton3" type="JButton" visibility="package"/>
+        <Field name="bigCityButton4" type="JButton" visibility="package"/>
+        <Field name="bigCityButton5" type="JButton" visibility="package"/>
+        <Field name="botHandButton" type="JButton" visibility="public"/>
+        <Field name="botRailButton" type="JButton" visibility="public"/>
+        <Field name="botDestButton" type="JButton" visibility="package"/>
+        <Field name="botBigCitiesButton" type="JButton" visibility="package"/>
+        <Field name="topCheckedBoxes" type="int[]" visibility="public"/>
+        <Field name="botCheckedBoxes" type="int[]" visibility="public"/>
+        <Field name="topCheckBoxes" type="ArrayList&lt;JCheckBox&gt;" visibility="public"/>
+        <Field name="botCheckBoxes" type="ArrayList&lt;JCheckBox&gt;" visibility="public"/>
+        <Field name="topDestCardList" type="ArrayList&lt;DestinationCard&gt;" visibility="public"/>
+        <Field name="botDestCardList" type="ArrayList&lt;DestinationCard&gt;" visibility="public"/>
+        <Field name="topBox0" type="JCheckBox" visibility="package"/>
+        <Field name="topBox1" type="JCheckBox" visibility="package"/>
+        <Field name="topBox2" type="JCheckBox" visibility="package"/>
+        <Field name="topBox3" type="JCheckBox" visibility="package"/>
+        <Field name="topBox4" type="JCheckBox" visibility="package"/>
+        <Field name="topBox5" type="JCheckBox" visibility="package"/>
+        <Field name="botBox0" type="JCheckBox" visibility="package"/>
+        <Field name="botBox1" type="JCheckBox" visibility="package"/>
+        <Field name="botBox2" type="JCheckBox" visibility="package"/>
+        <Field name="botBox3" type="JCheckBox" visibility="package"/>
+        <Field name="botBox4" type="JCheckBox" visibility="package"/>
+        <Field name="botBox5" type="JCheckBox" visibility="package"/>
+        <Field name="topTrackCounters" type="int[]" visibility="package"/>
+        <Field name="botTrackCounters" type="int[]" visibility="package"/>
+        <Field name="topBox" type="JFrame" visibility="public"/>
+        <Field name="botBox" type="JFrame" visibility="public"/>
+        <Field name="topBoxClosed" type="boolean" visibility="public"/>
+        <Field name="botBoxClosed" type="boolean" visibility="public"/>
+        <Field name="submitTop" type="JButton" visibility="public"/>
+        <Field name="submitBot" type="JButton" visibility="public"/>
+        <Field name="topScore" type="int" visibility="public"/>
+        <Field name="botScore" type="int" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="initTrackCounters" returnType="void" visibility="public"/>
+        <Method name="initLabelList" returnType="void" visibility="public"/>
+        <Method name="initPanelList" returnType="void" visibility="public"/>
+        <Method name="initRailLabelList" returnType="void" visibility="public"/>
+        <Method name="initRailIconList" returnType="void" visibility="public"/>
+        <Method name="initTrackLabelList" returnType="void" visibility="public"/>
+        <Method name="initPlayerButtonList" returnType="void" visibility="public"/>
+        <Method name="initMidButtonLists" returnType="void" visibility="public"/>
+        <Method name="initRailPileLists" returnType="void" visibility="public"/>
+        <Method name="setTicketDeck" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;DestinationCard&gt;" name="deck"/>
+        </Method>
+        <Method name="makeArea" returnType="void" visibility="public"/>
+        <Method name="makePanel" returnType="void" visibility="public">
+          <Argument type="JPanel" name="panel"/>
+          <Argument type="Color" name="color"/>
+          <Argument type="Border" name="border"/>
+          <Argument type="LayoutManager" name="layout"/>
+          <Argument type="String" name="labelStr"/>
+        </Method>
+        <Method name="makeIcon" returnType="void" visibility="public">
+          <Argument type="JLabel" name="label"/>
+          <Argument type="String" name="urlStr"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="addLabels" returnType="void" visibility="public"/>
+        <Method name="addRailIcons" returnType="void" visibility="public"/>
+        <Method name="addRailLabels" returnType="void" visibility="public"/>
+        <Method name="addTrackLabels" returnType="void" visibility="public"/>
+        <Method name="addMidPanelLabels" returnType="void" visibility="public"/>
+        <Method name="addAllButtons" returnType="void" visibility="public"/>
+        <Method name="addButtonToPanel" returnType="void" visibility="public">
+          <Argument type="JPanel" name="panel"/>
+          <Argument type="JButton" name="button"/>
+          <Argument type="String" name="butStr"/>
+          <Argument type="int" name="x_offset"/>
+          <Argument type="int" name="y_offset"/>
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Method>
+        <Method name="makeButton" returnType="void" visibility="public">
+          <Argument type="JButton" name="button"/>
+          <Argument type="String" name="urlStr"/>
+        </Method>
+        <Method name="addMiddleButtons" returnType="void" visibility="public"/>
+        <Method name="makeAllSubPanels" returnType="void" visibility="public"/>
+        <Method name="addSubPanel" returnType="void" visibility="public">
+          <Argument type="Container" name="panel"/>
+          <Argument type="Container" name="subPanel"/>
+          <Argument type="GridBagConstraints" name="c"/>
+          <Argument type="int" name="gridx"/>
+          <Argument type="int" name="gridy"/>
+          <Argument type="Insets" name="insets"/>
+          <Argument type="float" name="weightx"/>
+          <Argument type="float" name="weighty"/>
+          <Argument type="int" name="anchor"/>
+        </Method>
+        <Method name="addTopPlayerSubPanels" returnType="void" visibility="public">
+          <Argument type="JPanel" name="player"/>
+        </Method>
+        <Method name="addBotPlayerSubPanels" returnType="void" visibility="public">
+          <Argument type="JPanel" name="player"/>
+        </Method>
+        <Method name="cardsOk" returnType="boolean" visibility="public">
+          <Argument type="Container" name="track"/>
+        </Method>
+        <Method name="canMoveToRail" returnType="boolean" visibility="public">
+          <Argument type="Container" name="track"/>
+        </Method>
+        <Method name="enemyRailOk" returnType="boolean" visibility="public">
+          <Argument type="Container" name="track"/>
+        </Method>
+        <Method name="canTrainRob" returnType="boolean" visibility="public">
+          <Argument type="Container" name="track"/>
+        </Method>
+        <Method name="trainRob" returnType="void" visibility="public">
+          <Argument type="Container" name="track"/>
+        </Method>
+        <Method name="allDifferent" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="moveToRail" returnType="void" visibility="public">
+          <Argument type="JPanel" name="pan"/>
+        </Method>
+        <Method name="moveToTrack" returnType="void" visibility="public">
+          <Argument type="JPanel" name="track"/>
+        </Method>
+        <Method name="capitalizeWord" returnType="String" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="addRailButton" returnType="void" visibility="public">
+          <Argument type="JPanel" name="pan"/>
+          <Argument type="JButton" name="but"/>
+          <Argument type="int" name="colorPos"/>
+          <Argument type="int" name="xPos"/>
+          <Argument type="int" name="colorIndex"/>
+          <Argument type="String" name="color"/>
+        </Method>
+        <Method name="printPiles" returnType="void" visibility="public"/>
+        <Method name="disablePlayerButtons" returnType="void" visibility="public">
+          <Argument type="String" name="player"/>
+        </Method>
+        <Method name="enablePlayerButtons" returnType="void" visibility="public">
+          <Argument type="String" name="player"/>
+        </Method>
+        <Method name="createArea" returnType="void" visibility="public"/>
+        <Method name="updateDeckCounters" returnType="void" visibility="public">
+          <Argument type="int" name="train"/>
+          <Argument type="int" name="dest"/>
+        </Method>
+        <Method name="updateScores" returnType="void" visibility="public"/>
+        <Method name="makeBoxLists" returnType="void" visibility="public"/>
+        <Method name="selectTickets" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;DestinationCard&gt;" name="cards"/>
+          <Argument type="String" name="player"/>
+        </Method>
+        <Method name="resetRailPos" returnType="void" visibility="public">
+          <Argument type="JPanel" name="rail"/>
+        </Method>
+        <Method name="resetHand" returnType="void" visibility="public">
+          <Argument type="JPanel" name="hand"/>
+        </Method>
+        <Method name="setLastHandCardPos" returnType="void" visibility="public">
+          <Argument type="JPanel" name="hand"/>
+        </Method>
+        <Method name="checkRail" returnType="void" visibility="public">
+          <Argument type="String" name="player"/>
+        </Method>
+        <Method name="canBuyTicket" returnType="boolean" visibility="public">
+          <Argument type="JButton" name="ticket"/>
+        </Method>
+        <Method name="buyTicket" returnType="void" visibility="public">
+          <Argument type="JButton" name="ticket"/>
+        </Method>
+        <Method name="getDeck" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Card&gt;" name="deck"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="bigCityCards" source="tickettoride.Model.GameBoard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="rail" source="tickettoride.Model.Player" target="tickettoride.Model.RailYard" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="midPanel" source="tickettoride.View.View" target="tickettoride.View.JPanelExtesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="whitePile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="ticketDeck" source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.DestinationCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DestinationCard&gt;"/>
+    <HasRelation name="bigCities" source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.BigCityCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;BigCityCard&gt;"/>
+    <UseRelation source="tickettoride.Controller.Controller" target="tickettoride.Model.GameBoard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="tickettoride.Model.Cards.BigCityCard" target="tickettoride.Model.Cards.Card"/>
+    <HasRelation name="greenPile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <UseRelation source="tickettoride.Controller.Controller" target="tickettoride.Model.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="topTickets" source="tickettoride.View.View" target="tickettoride.Model.Cards.DestinationCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DestinationCard&gt;"/>
+    <IsRelation name="is" source="tickettoride.Model.Cards.DestinationCard" target="tickettoride.Model.Cards.Card"/>
+    <HasRelation name="allTickets" source="tickettoride.View.View" target="tickettoride.Model.Cards.DestinationCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DestinationCard&gt;"/>
+    <HasRelation name="botCities" source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.BigCityCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;BigCityCard&gt;"/>
+    <HasRelation name="purplePile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="topCities" source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.BigCityCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;BigCityCard&gt;"/>
+    <HasRelation name="botTickets" source="tickettoride.View.View" target="tickettoride.Model.Cards.DestinationCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DestinationCard&gt;"/>
+    <HasRelation name="trainCards" source="tickettoride.Model.GameBoard" target="tickettoride.Model.Deck" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="tickettoride.Model.Cards.TrainCard" target="tickettoride.Model.Cards.Card"/>
+    <UseRelation source="tickettoride.Model.Player" target="tickettoride.Model.RailYard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tickettoride.Model.Player" target="tickettoride.Model.Track" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.DestinationCard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gb" source="tickettoride.Controller.Controller" target="tickettoride.Model.GameBoard" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="P2" source="tickettoride.Controller.Controller" target="tickettoride.Model.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orangePile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="P1" source="tickettoride.Controller.Controller" target="tickettoride.Model.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="centerCards" source="tickettoride.Model.GameBoard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="destCards" source="tickettoride.Model.Player" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <UseRelation source="tickettoride.Model.Deck" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="trainDeck" source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="track" source="tickettoride.Model.Player" target="tickettoride.Model.Track" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="tickettoride.Controller.Controller" target="tickettoride.View.View" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="redPile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="cards" source="tickettoride.Model.Deck" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="Hand" source="tickettoride.Model.Player" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <UseRelation source="tickettoride.Model.GameBoard" target="tickettoride.Model.Deck" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="blackPile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <UseRelation source="tickettoride.View.View" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="yellowPile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="bluePile" source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <UseRelation source="tickettoride.Model.GameBoard" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tickettoride.Controller.Controller" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tickettoride.View.View" target="tickettoride.Model.Cards.DestinationCard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="locomotivePile" source="tickettoride.Model.Track" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <HasRelation name="botDestCardList" source="tickettoride.View.View" target="tickettoride.Model.Cards.DestinationCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DestinationCard&gt;"/>
+    <HasRelation name="destCards" source="tickettoride.Model.GameBoard" target="tickettoride.Model.Deck" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tickettoride.Model.Track" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="deck" source="tickettoride.View.View" target="tickettoride.Model.Cards.Card" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Card&gt;"/>
+    <UseRelation source="tickettoride.Model.Player" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tickettoride.Model.RailYard" target="tickettoride.Model.Cards.Card" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="tickettoride.Model.Track" target="tickettoride.Model.RailYard"/>
+    <HasRelation name="topDestCardList" source="tickettoride.View.View" target="tickettoride.Model.Cards.DestinationCard" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DestinationCard&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
